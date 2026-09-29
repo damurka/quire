@@ -1,0 +1,32 @@
+# quire licence
+
+Copyright (c) 2026 David Kariuki and the African Population and Health Research Center (APHRC). All rights reserved.
+
+## You may
+
+- install and use this package, free of charge, to build, run and distribute your own applications and reports
+  (Shiny apps and anything else), for any purpose, commercial or not;
+- redistribute the package unmodified, as installed from its official sources, alongside your applications.
+
+## You may not, without written permission from the copyright holders
+
+- modify, adapt, translate or make derivative works of the package, its browser bundle (`inst/www/quire.js`,
+  `inst/www/quire.css`) or its R code, other than as your own application calls them;
+- reverse-engineer, de-obfuscate or decompile the browser bundle, except as far as applicable law expressly permits
+  despite this limitation;
+- sell, sub-license or redistribute the package, or any part of it, as a product of its own.
+
+## No warranty
+
+The package is provided "as is", without warranty of any kind, express or implied, including the warranties of
+merchantability, fitness for a particular purpose and non-infringement. In no event shall the copyright holders be
+liable for any claim, damages or other liability arising from the use of the package.
+
+## Third-party software
+
+The browser bundle includes open-source libraries under their own licences (React, TipTap and ProseMirror, docx,
+PptxGenJS, JSZip and others); their notices are in `inst/www/THIRD-PARTY-NOTICES.txt`, and those licences, not this one,
+govern those libraries. The fonts in `inst/www/fonts` are under their own open licences (Source Sans 3 and the other text fonts: SIL Open Font
+License; Bootstrap Icons: MIT).
+
+Permission requests: hello@damurka.com

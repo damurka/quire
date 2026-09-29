@@ -1,0 +1,28 @@
+Package: quire
+Title: A Word-Like Report Builder for Shiny
+Version: 0.1.0
+Authors@R: c(
+      person("David", "Kariuki", , "hello@damurka.com", role = c("aut", "cre"),
+             comment = c(ORCID = "0009-0003-6159-1107")),
+      person("African Population and Health Research Center (APHRC)",
+            role = c("cph", "fnd"))
+    )
+Description: Quire's report builder in a Shiny app: a Word-like editor of documents and slide decks that
+    writes Word, PowerPoint and PDF files itself, in the browser. The app is its host: it says what charts and
+    tables it can draw and draws them (with 'ggplot2' or any other way), and keeps the reports; everything else,
+    the editing, the page layout, the files and an AI's reading and editing of reports, is done by the builder.
+License: file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+Depends:
+    R (>= 4.1)
+Imports:
+    htmltools (>= 0.5.9),
+    jsonlite (>= 2.0.0),
+    shiny (>= 1.14.0)
+Suggests:
+    ggplot2 (>= 4.0.3),
+    svglite (>= 2.2.2),
+    testthat (>= 3.3.2)
+Config/testthat/edition: 3
