@@ -87,3 +87,10 @@ test_that("the UI mounts the builder with Shiny's messages in the module's names
   expect_match(ui, 'Quire.shiny\\("reports-"\\)')
   expect_match(ui, '"lang":"fr"')
 })
+
+test_that("a host prints the printable page with Quire's own pdf and pages unless it has its own", {
+  h <- quire_host(kinds = function() list(), render = function(request) NULL)
+  expect_true(is.function(h$pdf) && is.function(h$pages))
+  own <- function(html, name) list(pages = list())
+  expect_identical(quire_host(kinds = function() list(), render = function(request) NULL, pages = own)$pages, own)
+})

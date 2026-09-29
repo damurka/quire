@@ -9,6 +9,7 @@
   regions = character(), flag = character(), dataMembers = character(), chartSchema = character(),
   themeFromFile = c("name", "data"), listReports = character(), getReport = "id", saveReport = "project",
   deleteReport = "id", assetGet = "id", assetSet = c("id", "asset"), saveFile = "file", pdf = c("html", "name"),
+  pages = c("html", "name"),
   extensions = character(), action = c("id", "context")
 )
 

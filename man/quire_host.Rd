@@ -71,3 +71,12 @@ The host answers the builder's few questions. Only \code{kinds} and \code{render
 feature (the text fields, report templates, keeping reports in the app, pictures, extra ribbon groups...).
 Without \code{listReports}/\code{getReport}/\code{saveReport} the reports are kept in the reader's browser.
 }
+\section{Other methods}{
+ \verb{pdf = function(html, name)} makes a PDF of the printable page (\code{html}), returned as
+\verb{list(type = "application/pdf", data = <base 64>)}; \verb{pages = function(html, name)} makes its pages as they are
+printed, for Print Preview: \verb{list(pages = <list of image data URLs>, converter = <what printed them>)}. A host
+that gives neither gets Quire's own (\code{\link[=quire_html_pdf]{quire_html_pdf()}}, \code{\link[=quire_print_pages]{quire_print_pages()}}), which print with Chrome, Edge
+or Chromium when the computer has one (and chromote, pdftools); without them the builder prints in the
+reader's browser.
+}
+

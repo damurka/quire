@@ -23,6 +23,12 @@
 #' @param saveFile `function(file)`: a Word, PowerPoint or PDF file the builder made (`file$name`, `file$type`,
 #'   `file$data` in base 64). Without it the reader's browser downloads the file.
 #' @param extensions `function()`: the app's own ribbon groups, fields and actions.
+#' @section Other methods: `pdf = function(html, name)` makes a PDF of the printable page (`html`), returned as
+#'   `list(type = "application/pdf", data = <base 64>)`; `pages = function(html, name)` makes its pages as they are
+#'   printed, for Print Preview: `list(pages = <list of image data URLs>, converter = <what printed them>)`. A host
+#'   that gives neither gets Quire's own ([quire_html_pdf()], [quire_print_pages()]), which print with Chrome, Edge
+#'   or Chromium when the computer has one (and chromote, pdftools); without them the builder prints in the
+#'   reader's browser.
 #' @param action `function(id, context)`: one of the app's own actions was pressed.
 #' @param ... Any other method of the host protocol, by name.
 #' @return A host, to give [quire_server()].
@@ -38,6 +44,9 @@ quire_host <- function(kinds, render, fields = NULL, fieldCatalog = NULL, preset
          assetGet = assetGet, assetSet = assetSet, saveFile = saveFile, extensions = extensions, action = action),
     list(...)
   )
+  # printing the printable page: Quire's own, unless the host has its own
+  if (is.null(fns$pdf)) fns$pdf <- .quire_default_pdf
+  if (is.null(fns$pages)) fns$pages <- .quire_default_pages
   fns <- fns[!vapply(fns, is.null, logical(1))]
   bad <- names(fns)[!vapply(fns, is.function, logical(1))]
   if (length(bad)) stop(sprintf("quire_host(): %s must be a function.", paste(bad, collapse = ", ")), call. = FALSE)
