@@ -52,3 +52,24 @@ test_that("the printable page and PowerPoint are written too", {
 test_that("a PDF needs a converter", {
   expect_error(quire_export(report, export_host, tempfile(fileext = ".pdf"), format = "pdf"), "converts it")
 })
+
+test_that("the chart fields are filled from the chart they are about, on a page and on a slide", {
+  host <- quire_host(
+    kinds = function() list(quire_kind("coverage", "table", "Coverage", indicators = list(list(value = "anc4", label = "Antenatal care (4+)")))),
+    render = function(request) quire_table(data.frame(Region = "North", Coverage = 81)),
+    years = function() c(2023, 2024)
+  )
+  doc <- list(id = "r2", name = "R", lang = "en", design = list(), blocks = list(
+    list(id = "p", type = "paragraph", text = "<p>{chart_indicator} in {chart_year}</p>"),
+    list(id = "t", type = "table", kind = "coverage", indicator = "anc4")
+  ))
+  f <- tempfile(fileext = ".docx")
+  quire_export(doc, host, f)
+  expect_match(part(f, "word/document.xml"), "Antenatal care (4+) in 2024", fixed = TRUE)
+  deck <- list(id = "d2", name = "D", kind = "deck", lang = "en", design = list(), blocks = list(), slides = list(list(id = "s1", items = list(
+    list(id = "a", x = 1, y = 0.5, w = 8, h = 1, block = list(id = "a", type = "heading", text = "{chart_indicator}, {chart_year}")),
+    list(id = "b", x = 1, y = 2, w = 8, h = 4, block = list(id = "b", type = "table", kind = "coverage", indicator = "anc4", year = 2023))))))
+  p <- tempfile(fileext = ".pptx")
+  quire_export(deck, host, p)
+  expect_match(part(p, "ppt/slides/slide1.xml"), "Antenatal care (4+), 2023", fixed = TRUE)
+})
