@@ -3,6 +3,7 @@
 export(quire_dependency)
 export(quire_dispatch)
 export(quire_error)
+export(quire_export)
 export(quire_file_store)
 export(quire_host)
 export(quire_kind)

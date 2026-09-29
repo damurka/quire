@@ -25,6 +25,14 @@ Only `kinds` and `render` are needed. The others add features: `fields` (the tex
 (`listReports`, `getReport`, `saveReport`, `deleteReport`, `assetGet`, `assetSet`; `quire_file_store(dir)` makes them
 from a folder). Without them the reports are kept in the reader's browser.
 
+With no browser, the same host writes a saved report to a file with the same writers as the builder's downloads
+(needs 'V8' and 'magick'; a PDF also needs a converter, Word or LibreOffice):
+
+```r
+quire_export(report, host, "report.docx")                    # or .pptx, format = "html"
+quire_export(report, host, "report.pdf", format = "pdf", pdf = function(input, output) ...)
+```
+
 A full example: `shiny::runApp(system.file("examples", package = "quire"))`.
 
 Licence: free to use with your apps, not to modify (see `LICENSE`); the libraries in the browser bundle are under their

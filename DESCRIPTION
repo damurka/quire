@@ -1,6 +1,6 @@
 Package: quire
 Title: A Word-Like Report Builder for Shiny
-Version: 0.1.0
+Version: 0.2.0
 Authors@R: c(
       person("David", "Kariuki", , "hello@damurka.com", role = c("aut", "cre"),
              comment = c(ORCID = "0009-0003-6159-1107")),
@@ -23,6 +23,9 @@ Imports:
     shiny (>= 1.14.0)
 Suggests:
     ggplot2 (>= 4.0.3),
+    magick (>= 2.9.1),
+    rsvg (>= 2.7.0),
     svglite (>= 2.2.2),
-    testthat (>= 3.3.2)
+    testthat (>= 3.3.2),
+    V8 (>= 8.2.0)
 Config/testthat/edition: 3
